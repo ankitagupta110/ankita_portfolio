@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankita Gupta - AI & Data Scientist</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Ankita Gupta</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Ankita Gupta</h1>
+                <h2 class="hero-subtitle">AI & Data Scientist</h2>
+                <p class="hero-description">GenAI | RAG | Agentic AI | Python | Azure | Machine Learning</p>
+                <div class="hero-socials">
+                    <a href="mailto:guptaankita0143@gmail.com" class="social-btn" title="Email">
+                        <i class="bi bi-envelope"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/ankita-gupta-23b688209/" target="_blank" class="social-btn" title="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/ankitagupta110" target="_blank" class="social-btn" title="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-person"></i> About Me</h2>
+            <div class="about-content">
+                <p>Experienced Data Scientist & AI Consultant with <strong>4 years of experience</strong> designing, developing, and deploying AI/ML solutions across NLP, Computer Vision, and Generative AI. Proven expertise in delivering <strong>GenAI, LLM-based systems, RAG architectures, prompt engineering, vector databases, and Agentic AI solutions</strong> across Healthcare, Life Sciences, and Enterprise Analytics.</p>
+                <p>Strong track record in building <strong>end-to-end AI systems</strong> for decision support, research automation, and insight generation. Comfortable working both independently and collaboratively with cross-functional teams, translating business requirements into scalable AI solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-gear"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3><i class="bi bi-keyboard"></i> Languages</h3>
+                    <p>Python (Pandas, NumPy, Scikit-learn), C, Java, JavaScript, React(Through AI), Node.JS(Through AI)</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="bi bi-cpu"></i> AI/ML</h3>
+                    <p>LLMs, RAG, Prompt Engineering, GenAI, Agentic AI, NLP, CNN, Computer Vision, Open CV, YOLO, Open API, Web Scraping, Beautiful Soup, Azure Document Intelligence (Azure DI) TensorFlow, PyTorch, Ollama, Hugging Face</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="bi bi-laptop"></i> Web Development</h3>
+                    <p>Django, Flask, FastAPI, HTML, CSS, Bootstrap, Fast APIs, Streamlit</p>
+                </div>
+                <div class="skill-card hidden" data-toggle="skills">
+                    <h3><i class="bi bi-server"></i> Databases</h3>
+                    <p>SQL, Vector Databases (FAISS, Pinecone)</p>
+                </div>
+                <div class="skill-card hidden" data-toggle="skills">
+                    <h3><i class="bi bi-cloud"></i> Cloud & Tools</h3>
+                    <p>Microsoft Azure, Git/GitHub, VS Code, Docker</p>
+                </div>
+                <div class="skill-card hidden" data-toggle="skills">
+                    <h3><i class="bi bi-cloud"></i> AI-Tools</h3>
+                    <p>Copilot, CrawlAI, Cursor, ChatGPT, Bot-Press, Replit </p>
+                </div>
+                <div class="skill-card hidden" data-toggle="skills">
+                    <h3><i class="bi bi-heart-pulse"></i> Healthcare Analytics</h3>
+                    <p>Clinical data processing, Predictive analytics, EMR systems, Decision support systems, Brain and Breast Tumor Detection.</p>
+                </div>
+            </div>
+            <button class="see-more-btn" onclick="toggleSection('skills')">See More</button>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section" id="experience">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-briefcase"></i> Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-card">
+                    <div class="experience-header">
+                    <div class="experience-title">
+                        <h3>Data Scientist</h3>
+                        <p class="company">MaxRidge.AI Tech Pvt. Ltd.</p>
+                        <span class="date"><i class="bi bi-calendar"></i> June 2025 – Present</span>
+                    </div>
+                    <div class="company-logo">
+                        <img src="{{ url_for('static', filename='images/maxridge.jpg') }}" alt="MaxRidge.AI logo">
+                    </div>
+                </div>
+                    <div class="experience-body">
+                        <ul>
+                            <li>Developing LLM-powered systems, RAG pipelines, and AI-driven report generation solutions</li>
+                            <li>Delivered GenAI, RAG, and Agentic AI solutions for enterprise clients</li>
+                            <li>Developed Transcript Search Engine Using Vector Databases RAG.</li>
+                            <li>Developed Vectorless RAG for Generate Responses Tool.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card hidden" data-toggle="experience">
+                    <div class="experience-header">
+                    <div class="experience-title">
+                        <h3>Data Scientist</h3>
+                        <p class="company">QBS Learning Services Pvt. Ltd.</p>
+                        <span class="date"><i class="bi bi-calendar"></i> September 2024 – May 2025</span>
+                    </div>
+                    <div class="company-logo">
+                        <img src="{{ url_for('static', filename='images/qbs_learning.png') }}" alt="QBS Learning Services logo">
+                    </div>
+                </div>
+                    <div class="experience-body">
+                        <ul>
+                            <li>Worked on NLP and Generative AI solutions.</li>
+                            <li>Implemented RAG-based workflows and prompt engineering for Reduce AI Score Percentage.</li>
+                            <li>Built Image Generation Tool using DALL-E and Stable Diffusion.</li>
+                            <li>Build Gen AI Tool for Indic language Recognition using OCR, LLM aand RAG.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card hidden" data-toggle="experience">
+                    <div class="experience-header">
+                    <div class="experience-title">
+                        <h3>Data Scientist</h3>
+                        <p class="company">Infyni Tech Pvt. Ltd.</p>
+                        <span class="date"><i class="bi bi-calendar"></i> April 2023 – September 2024</span>
+                    </div>
+                    <div class="company-logo">
+                        <img src="{{ url_for('static', filename='images/infyni.jpg') }}" alt="Infyni Tech logo">
+                    </div>
+                </div>
+                    <div class="experience-body">
+                        <ul>
+                            <li>Built Chatbot for best Course Sales recommendation using Bot Press Tool.</li>
+                            <li>Designed and integrated REST APIs using Django, Flask, and FastAPI</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card hidden" data-toggle="experience">
+                    <div class="experience-header">
+                    <div class="experience-title">
+                        <h3>Machine Learning Developer</h3>
+                        <p class="company">MP2IT Pvt. Ltd.</p>
+                        <span class="date"><i class="bi bi-calendar"></i> April 2022 – April 2023</span>
+                    </div>
+                    <div class="company-logo">
+                        <img src="{{ url_for('static', filename='images/mp2it.png') }}" alt="MP2IT logo">
+                    </div>
+                </div>
+                    <div class="experience-body">
+                        <ul>
+                            <li>Gained hands-on experience in classical ML and deep learning models</li>
+                            <li>Worked on real-world projects in healthcare, finance, and security domains</li>
+                            <li>Applied statistical analysis, SPSS tool for data interpretation, and prompt engineering techniques</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="see-more-btn" onclick="toggleSection('experience')">See More</button>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-rocket"></i> Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <h3>AI-Driven Market Intelligence & Report Generation</h3>
+                    <p class="project-role">Data Scientist / AI Consultant</p>
+                    <p class="project-description">GenAI-powered intelligence platform with Agentic AI, RAG architectures, multi-agent orchestration, and vector database integration for source-verified insights.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">FastAPI</span>
+                        <span class="tech-badge">LangChain</span>
+                        <span class="tech-badge">RAG</span>
+                        <span class="tech-badge">Vector DB</span>
+                        <span class="tech-badge">LLMs</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="bi bi-pencil"></i>
+                    </div>
+                    <h3>AI-Driven Text & Image Generation</h3>
+                    <p class="project-role">Data Scientist</p>
+                    <p class="project-description">NLP-based text and image generation pipelines with RAG workflows, grade-level adaptive content, and quality-driven evaluation metrics for educational products.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">FastAPI</span>
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">NLP</span>
+                        <span class="tech-badge">RAG</span>
+                        <span class="tech-badge">LLMs</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <h3>AI/ML Solutions for EdTech Platforms</h3>
+                    <p class="project-role">Data Scientist</p>
+                    <p class="project-description">Super Resolution image enhancement, NLP chatbots for user engagement, ML-driven recommendations, and scalable REST APIs for educational platforms.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">Flask</span>
+                        <span class="tech-badge">Computer Vision</span>
+                        <span class="tech-badge">NLP</span>
+                        <span class="tech-badge">Recommendation Systems</span>
+                    </div>
+                </div>
+
+                <div class="project-card hidden" data-toggle="projects">
+                    <div class="project-icon">
+                        <i class="bi bi-robot"></i>
+                    </div>
+                    <h3>ML/AI Application Development</h3>
+                    <p class="project-role">Machine Learning Developer / AI Consultant</p>
+                    <p class="project-description">End-to-end ML model development for classification, prediction, and recommendation across healthcare, finance, and security domains.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">TensorFlow</span>
+                        <span class="tech-badge">Scikit-learn</span>
+                        <span class="tech-badge">CNN</span>
+                        <span class="tech-badge">Deep Learning</span>
+                        <span class="tech-badge">SPSS</span>
+                    </div>
+                </div>
+            </div>
+            <button class="see-more-btn" onclick="toggleSection('projects')">See More</button>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-mortarboard"></i> Education</h2>
+            <div class="education-timeline">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>MCA (Master of Computer Applications)</h3>
+                        <p class="education-institution">Agrawan Heritage University</p>
+                        <p class="education-date">2023 - 2025</p>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>Diploma in IT</h3>
+                        <p class="education-institution">Dayalbagh Educational Institute</p>
+                        <p class="education-date">2021 - 2023</p>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>B.Sc. (Bachelor of Science)</h3>
+                        <p class="education-institution">Dr. B R Ambedkar University Agra</p>
+                        <p class="education-date">2018 - 2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-envelope-open"></i> Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'm interested in AI/ML opportunities, consulting, and collaborative projects. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:guptaankita0143@gmail.com" class="contact-btn">
+                        <i class="bi bi-envelope"></i> Email
+                    </a>
+                    <a href="https://linkedin.com/in/ankita-gupta-23b688209/" target="_blank" class="contact-btn">
+                        <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/ankitagupta110" target="_blank" class="contact-btn">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
+                    <a href="tel:8218282173" class="contact-btn">
+                        <i class="bi bi-telephone"></i> Call
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ankita Gupta. All rights reserved. | AI & Healthcare Analytics Consultant</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const toggleItems = section.querySelectorAll('[data-toggle="' + sectionId + '"]');
+            const button = section.querySelector('.see-more-btn');
+            
+            toggleItems.forEach(el => {
+                el.classList.toggle('hidden');
+            });
+            
+            if (button.textContent.trim() === 'See More') {
+                button.textContent = 'See Less';
+            } else {
+                button.textContent = 'See More';
+            }
+        }
+    </script>
+</body>
+</html>
