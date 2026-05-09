@@ -9,8 +9,8 @@
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="static/css/styles.css">
-    <link rel="stylesheet" href="static/css/responsive.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -330,6 +330,9 @@
                         <i class="bi bi-telephone"></i> Call
                     </a>
                 </div>
+                <div class="cv-fallback-note text-center mt-3">
+                    <small>If the page PDF generation fails, you can <a href="{{ url_for('download_cv') }}">download a fallback CV</a>.</small>
+                </div>
             </div>
         </div>
     </section>
@@ -343,8 +346,8 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNa5IjmyN8TxACHf9Oc3EtOsdEW/ul9KExpvE3Vowu8Zw3Wph40ME0hchQ7vP7i3Lg9nTs6zq2e9AD1wVbk5mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-Nlk7QfbO+syljovpNDxO8lZz5gEoUiF+Tl8z6HXH3zks+gzz+Yb0L6rEJzlu0tlHVn9cSdZUc4J2C80IQ4638A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         function getCvFilename() {
             const today = new Date();
@@ -355,42 +358,55 @@
         }
 
         async function generateCvPdf() {
-            const element = document.body;
-            const filename = getCvFilename();
-            const originalScroll = window.scrollY;
+            try {
+                if (typeof html2canvas !== 'function') {
+                    throw new Error('html2canvas is not available');
+                }
+                const PdfConstructor = window.jspdf?.jsPDF || window.jsPDF;
+                if (!PdfConstructor) {
+                    throw new Error('jsPDF is not available');
+                }
 
-            window.scrollTo(0, 0);
-            const canvas = await html2canvas(element, {
-                scale: 2,
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: '#111111'
-            });
+                const element = document.body;
+                const filename = getCvFilename();
+                const originalScroll = window.scrollY;
 
-            const imgData = canvas.toDataURL('image/png');
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF('p', 'pt', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = pdf.internal.pageSize.getHeight();
-            const imgProps = pdf.getImageProperties(imgData);
-            const imgWidth = pdfWidth;
-            const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                window.scrollTo(0, 0);
+                const canvas = await html2canvas(element, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#111111'
+                });
 
-            let heightLeft = imgHeight;
-            let position = 0;
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new PdfConstructor('p', 'pt', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const imgProps = pdf.getImageProperties(imgData);
+                const imgWidth = pdfWidth;
+                const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pdfHeight;
+                let heightLeft = imgHeight;
+                let position = 0;
 
-            while (heightLeft > -pdfHeight) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
                 pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pdfHeight;
-            }
 
-            pdf.save(filename);
-            window.scrollTo(0, originalScroll);
+                while (heightLeft > -pdfHeight) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pdfHeight;
+                }
+
+                pdf.save(filename);
+                window.scrollTo(0, originalScroll);
+            } catch (error) {
+                console.error('CV generation failed:', error);
+                alert('Automatic CV generation failed. Downloading a fallback CV instead.');
+                window.location.href = '/download-cv';
+            }
         }
 
         function toggleSection(sectionId) {
