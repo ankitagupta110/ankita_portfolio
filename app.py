@@ -1,8 +1,8 @@
 import os
 from flask import Flask, render_template
 
-# Create Flask application
-app = Flask(__name__)
+# Create Flask application using the project root as the template folder
+app = Flask(__name__, template_folder=".")
 app.secret_key = os.environ.get("SESSION_SECRET", "dev-secret-key")
 
 @app.route('/')
