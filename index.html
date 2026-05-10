@@ -323,12 +323,15 @@
                     <a href="https://github.com/ankitagupta110" target="_blank" class="contact-btn">
                         <i class="bi bi-github"></i> GitHub
                     </a>
-                    <a href="static/Ankita_cv_2k26_April_Updated.pdf" download class="contact-btn">
+                    <button type="button" class="contact-btn" onclick="generateCvPdf()">
                         <i class="bi bi-file-earmark-arrow-down"></i> Download CV
-                    </a>
+                    </button>
                     <a href="tel:8218282173" class="contact-btn">
                         <i class="bi bi-telephone"></i> Call
                     </a>
+                </div>
+                <div class="cv-fallback-note text-center mt-3">
+                    <small>If the page PDF generation fails, you can <a href="{{ url_for('download_cv') }}">download a fallback CV</a>.</small>
                 </div>
             </div>
         </div>
@@ -343,7 +346,69 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
+        function getCvFilename() {
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = today.toLocaleString('default', { month: 'long' });
+            const year = today.getFullYear();
+            return `Ankita_Gupta_CV_${day}_${month}_${year}.pdf`;
+        }
+
+        async function generateCvPdf() {
+            try {
+                if (typeof html2canvas !== 'function') {
+                    throw new Error('html2canvas is not available');
+                }
+                const PdfConstructor = window.jspdf?.jsPDF || window.jsPDF;
+                if (!PdfConstructor) {
+                    throw new Error('jsPDF is not available');
+                }
+
+                const element = document.body;
+                const filename = getCvFilename();
+                const originalScroll = window.scrollY;
+
+                window.scrollTo(0, 0);
+                const canvas = await html2canvas(element, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#111111'
+                });
+
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new PdfConstructor('p', 'pt', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const imgProps = pdf.getImageProperties(imgData);
+                const imgWidth = pdfWidth;
+                const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                let heightLeft = imgHeight;
+                let position = 0;
+
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pdfHeight;
+
+                while (heightLeft > -pdfHeight) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pdfHeight;
+                }
+
+                pdf.save(filename);
+                window.scrollTo(0, originalScroll);
+            } catch (error) {
+                console.error('CV generation failed:', error);
+                alert('Automatic CV generation failed. Downloading a fallback CV instead.');
+                window.location.href = '/download-cv';
+            }
+        }
+
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
             const toggleItems = section.querySelectorAll('[data-toggle="' + sectionId + '"]');

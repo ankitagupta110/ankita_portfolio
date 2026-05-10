@@ -516,17 +516,19 @@ body {
 }
 
 .contact-links {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(180px, auto));
     justify-content: center;
     gap: 1.5rem;
-    flex-wrap: wrap;
 }
 
 .contact-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.8rem;
     padding: 1rem 2rem;
+    min-width: 180px;
     background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
     color: white;
     border-radius: 8px;
