@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import Flask, render_template, Response
 
 # Create Flask application using the project root as the template folder
-app = Flask(__name__, template_folder=".")
+app = Flask(__name__, template_folder=".", static_folder="static", static_url_path="/static")
 app.secret_key = os.environ.get("SESSION_SECRET", "dev-secret-key")
 
 @app.route('/')
